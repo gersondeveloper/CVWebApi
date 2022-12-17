@@ -1,4 +1,4 @@
-namespace CvWebApi.DataAccess.Repository;
+namespace CVWebApi.DataAccess.Repository;
 
 public class Repository {
 
