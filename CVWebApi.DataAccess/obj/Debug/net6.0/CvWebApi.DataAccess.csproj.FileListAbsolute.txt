@@ -10,11 +10,8 @@
 /Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/obj/Debug/net6.0/refint/CvWebApi.DataAccess.dll
 /Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/obj/Debug/net6.0/CvWebApi.DataAccess.pdb
 /Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/obj/Debug/net6.0/ref/CvWebApi.DataAccess.dll
-/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/CVWebApi.deps.json
-/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/CVWebApi.runtimeconfig.json
-/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/appsettings.Development.json
-/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/appsettings.json
-/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/CVWebApi
-/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/CVWebApi.dll
-/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/CVWebApi.pdb
 /Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/obj/Debug/net6.0/CvWebApi.DataAccess.csproj.CopyComplete
+/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/CVWebApi.DataAccess.runtimeconfig.json
+/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/obj/Debug/net6.0/CVWebApi.DataAccess.genruntimeconfig.cache
+/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/CVWebApi.Models.dll
+/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/bin/Debug/net6.0/CVWebApi.Models.pdb

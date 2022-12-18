@@ -1,4 +1,4 @@
-using CVWebApi.Models;
+using CVWebApi.Models.Entities;
 
 namespace CVWebApi.DataAccess.Repository.IRepository;
 

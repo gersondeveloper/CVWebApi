@@ -1,15 +1,21 @@
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using FluentValidation;
 
-namespace CVWebApi.Models;
+namespace CVWebApi.Models.Entities;
 
-public class Education {
-    public Guid Id { get; set; }
-    public string EducationalInstitution { get; set; }
+[Table("Educations")]
+public class Education
+{
+    [Key] public Guid Id { get; set; }
+
+    [Required] public string EducationalInstitution { get; set; }
     public EducationalType EducationalType { get; set; }
-    public DateTime StartTime { get; set; }
+    [Required] public DateTime StartTime { get; set; }
     public DateTime? EndTime { get; set; }
     public bool isFinished { get; set; }
-    public DateTime CreationDate { get; set; }
+    [Required] public DateTime CreationDate { get; set; }
     public bool isActive { get; set; }
 }
 
