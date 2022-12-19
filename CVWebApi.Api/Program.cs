@@ -1,6 +1,5 @@
 using CVWebApi.DataAccess.Repository.IRepository;
 using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

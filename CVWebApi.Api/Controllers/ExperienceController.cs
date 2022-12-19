@@ -1,5 +1,6 @@
 using AutoMapper;
 using CVWebApi.DataAccess.Repository.IRepository;
+using CVWebApi.ViewModel;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CVWebApi.Controllers;
 
 [Route("api/[controller]")]
+[Produces("application/json")]
 [ApiController]
 public class ExperienceController : Controller
 {
@@ -48,12 +50,17 @@ public class ExperienceController : Controller
     [HttpPost]
     [ProducesResponseType(403)]
     [ProducesResponseType(typeof(Experience), 201)]
-    public IActionResult Post([FromBody] Experience experience)
+    public IActionResult Post([FromBody] ExperienceViewModel experienceViewModel)
     {
+        var experience = _mapper.Map<Experience>(experienceViewModel);
+
         ValidationResult result = _validator.Validate(experience);
-        if(result.IsValid)
+        
+        if (result.IsValid)
         {
             _unitOfWork.Experience.Add(experience);
+            _unitOfWork.Save();
+            
             return new CreatedResult("Created", experience);
         }
         return new BadRequestResult();
