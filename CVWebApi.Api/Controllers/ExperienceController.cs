@@ -1,8 +1,5 @@
-using AutoMapper;
 using CVWebApi.DataAccess.Repository.IRepository;
-using CVWebApi.ViewModel;
 using FluentValidation;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CVWebApi.Controllers;
@@ -13,14 +10,12 @@ namespace CVWebApi.Controllers;
 public class ExperienceController : Controller
 {
     public readonly IUnitOfWork _unitOfWork;
-    public readonly IMapper _mapper;
     public readonly IValidator<Experience> _validator;
 
 
-    public ExperienceController(IUnitOfWork unitOfWork, IMapper mapper, IValidator<Experience> validator)
+    public ExperienceController(IUnitOfWork unitOfWork, IValidator<Experience> validator)
     {
         _unitOfWork = unitOfWork;
-        _mapper = mapper;
         _validator = validator;
     }
 
@@ -32,7 +27,7 @@ public class ExperienceController : Controller
 
 
         var result = _unitOfWork.Experience.GetFirstOrDefault(x => x.Id == id);
-        return new OkObjectResult(result);
+        return result != null ? new OkObjectResult(result) : new NotFoundResult();
     }
 
     [HttpGet("GetAll")]
@@ -44,7 +39,6 @@ public class ExperienceController : Controller
 
         if(result != null)
         {
-            var mapped = _mapper.Map<ExperienceViewModel>(result);
             return new OkObjectResult(result);
         }
 
@@ -54,13 +48,9 @@ public class ExperienceController : Controller
     [HttpPost]
     [ProducesResponseType(403)]
     [ProducesResponseType(typeof(Experience), 201)]
-    public IActionResult Post([FromBody] ExperienceViewModel experienceViewModel)
-    {
-        var experience = _mapper.Map<Experience>(experienceViewModel);
-
-        ValidationResult result = _validator.Validate(experience);
-        
-        if (result.IsValid)
+    public IActionResult Post([FromBody] Experience experience)
+    {       
+        if (ModelState.IsValid)
         {
             _unitOfWork.Experience.Add(experience);
             _unitOfWork.Save();

@@ -12,14 +12,14 @@ public class Experience
     public DateTime? FinishDate { get; private set; }
     [Required] public string RoleDescription { get; private set; }
     [Required]
-    public IEnumerable<string> TechnologiesList { get; private set; }
+    public List<string> TechnologiesList { get; private set; }
 
     public Experience()
     {
 
     }
     //create constructor
-    private Experience(string companyName, string role, DateTime startDate, string roleDescription, IEnumerable<string> technologiesList)
+    private Experience(string companyName, string role, DateTime startDate, string roleDescription, List<string> technologiesList)
     {
         Id = Guid.NewGuid();
         CompanyName = companyName;
@@ -31,7 +31,7 @@ public class Experience
     }
 
     //update constructor
-    private Experience(Guid id, string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, IEnumerable<string> technologiesList)
+    private Experience(Guid id, string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, List<string> technologiesList)
     {
         Id = id;
         CompanyName = companyName;
@@ -42,12 +42,12 @@ public class Experience
         TechnologiesList = technologiesList;
     }
 
-    public Experience AddExperience(string companyName, string role, DateTime startDate, string roleDescription, IEnumerable<string> technologiesList)
+    public Experience AddExperience(string companyName, string role, DateTime startDate, string roleDescription, List<string> technologiesList)
     {
         return new Experience(companyName, role, startDate, roleDescription, technologiesList);
     }
 
-    public Experience UpdateExperience(Guid id, string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, IEnumerable<string> technologiesList)
+    public Experience UpdateExperience(Guid id, string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, List<string> technologiesList)
     {
         return new Experience(id, companyName, role, startDate, finishDate, roleDescription, technologiesList);
     }
