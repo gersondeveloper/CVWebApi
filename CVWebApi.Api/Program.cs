@@ -1,5 +1,5 @@
-using System.Reflection;
 using CVWebApi.DataAccess.Repository.IRepository;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,11 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
-
 builder.Services.AddControllers();
-//builder.Services.AddFluentValidation(options => options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+builder.Services.AddScoped<IValidator<Experience>, ExperienceValidator>();
 
 //configure Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
