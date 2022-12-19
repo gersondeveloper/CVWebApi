@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using CVWebApi.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -25,20 +26,13 @@ public class Repository<T> : IRepository<T> where T : class
         return _dbSet.Find(id);
     }
 
-    public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>> orderBy = null, string includeProperties = null)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+    public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
     {
         IQueryable<T> query = _dbSet;
-
         if (filter != null)
         {
             query = query.Where(filter);
         }
-
         if (includeProperties != null)
         {
             foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -46,12 +40,6 @@ public class Repository<T> : IRepository<T> where T : class
                 query = query.Include(includeProp);
             }
         }
-
-        if (orderBy != null)
-        {
-            return orderBy(query).ToList();
-        }
-
         return query.ToList();
     }
 

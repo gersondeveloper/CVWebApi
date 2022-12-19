@@ -5,18 +5,11 @@ using Newtonsoft.Json;
 
 public class CVDbContext : DbContext {
 
-    public CVDbContext()
+    public CVDbContext(DbContextOptions<CVDbContext> options) : base(options)
     {
 
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Data Source=localhost, 1433;Database=DB_CVWebApi;User ID=sa;Password=MyPass@word; Trusted_Connection=false;");
-        }
-    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,10 +22,7 @@ public class CVDbContext : DbContext {
         });
     }
 
-    public CVDbContext(DbContextOptions<CVDbContext> options) : base(options)
-    {
 
-    }
 
     public DbSet<Education> Educations { get; set; }
     public DbSet<Experience> Experiences { get; set; }

@@ -1,12 +1,15 @@
+using CvWebApi.DataAccess.Repository.IRepository;
+
 namespace CVWebApi.DataAccess.Repository.IRepository;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly CVDbContext _dbContext;
+    private CVDbContext _dbContext;
 
     public UnitOfWork(CVDbContext dbContext)
     {
         _dbContext = dbContext;
+        Experience = new ExperienceRepository(_dbContext);
     }
 
     public IEducationRepository Education { get; private set;}

@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CVWebApi.Models.Entities\CVWebApi.Models.Entities.csproj" />
     <ProjectReference Include="..\CVWebApi.Models\CVWebApi.Models.csproj" />
   </ItemGroup>
 

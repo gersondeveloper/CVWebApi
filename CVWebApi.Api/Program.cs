@@ -9,11 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-builder.Services.AddControllers()
-    .AddFluentValidation( options =>
-    {
-        options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-    });
+builder.Services.AddControllers();
+//builder.Services.AddFluentValidation(options => options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
 //configure Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
