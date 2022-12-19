@@ -4,6 +4,11 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly CVDbContext _dbContext;
 
+    public UnitOfWork(CVDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
     public IEducationRepository Education { get; private set;}
     public IExperienceRepository Experience { get; private set;}
     public IPersonalDataRepository PersonalData {get; private set; }

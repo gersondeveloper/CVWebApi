@@ -14,6 +14,10 @@ public class Experience
     [Required]
     public IEnumerable<string> TechnologiesList { get; private set; }
 
+    public Experience()
+    {
+
+    }
     //create constructor
     private Experience(string companyName, string role, DateTime startDate, string roleDescription, IEnumerable<string> technologiesList)
     {
@@ -27,7 +31,7 @@ public class Experience
     }
 
     //update constructor
-    private Experience(Guid id, string companyName, string role, DateTime startDate, DateTime finishDate, string roleDescription, IEnumerable<string> technologiesList)
+    private Experience(Guid id, string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, IEnumerable<string> technologiesList)
     {
         Id = id;
         CompanyName = companyName;
@@ -38,12 +42,12 @@ public class Experience
         TechnologiesList = technologiesList;
     }
 
-    internal Experience AddExperience(string companyName, string role, DateTime startDate, string roleDescription, IEnumerable<string> technologiesList)
+    public Experience AddExperience(string companyName, string role, DateTime startDate, string roleDescription, IEnumerable<string> technologiesList)
     {
         return new Experience(companyName, role, startDate, roleDescription, technologiesList);
     }
 
-    internal Experience UpdateExperience(Guid id, string companyName, string role, DateTime startDate, DateTime finishDate, string roleDescription, IEnumerable<string> technologiesList)
+    public Experience UpdateExperience(Guid id, string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, IEnumerable<string> technologiesList)
     {
         return new Experience(id, companyName, role, startDate, finishDate, roleDescription, technologiesList);
     }
