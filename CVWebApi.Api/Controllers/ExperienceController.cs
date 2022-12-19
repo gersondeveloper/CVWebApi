@@ -27,8 +27,12 @@ public class ExperienceController : Controller
     [HttpGet()]
     public IActionResult GetById([FromQuery] Guid id)
     {
-        var result = _unitOfWork.Experience.Get(id);
-        return result != null ? new OkObjectResult(result) : new NotFoundResult();
+        if (id == Guid.Empty)
+            return new BadRequestResult();
+
+
+        var result = _unitOfWork.Experience.GetFirstOrDefault(x => x.Id == id);
+        return new OkObjectResult(result);
     }
 
     [HttpGet("GetAll")]
@@ -40,7 +44,7 @@ public class ExperienceController : Controller
 
         if(result != null)
         {
-            /*var mapped = _mapper.Map<Experience, ExperienceViewModel>(result);*/
+            var mapped = _mapper.Map<ExperienceViewModel>(result);
             return new OkObjectResult(result);
         }
 

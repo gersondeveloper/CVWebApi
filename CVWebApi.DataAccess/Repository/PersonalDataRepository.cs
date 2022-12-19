@@ -4,17 +4,17 @@ using CVWebApi.Models.Entities;
 
 namespace CvWebApi.DataAccess.Repository.IRepository;
 
-public class EducationRepository : Repository<Education>, IEducationRepository
+public class PersonalDataRepository : Repository<PersonalData>, IPersonalDataRepository
 {
 
     private readonly CVDbContext _context;
 
-    public EducationRepository(CVDbContext context) : base(context)
+    public PersonalDataRepository(CVDbContext context) : base(context)
     {
         _context = context;
     }
 
-    public void Update(Education education)
+    public void Update(PersonalData personalData)
     {
 
     }

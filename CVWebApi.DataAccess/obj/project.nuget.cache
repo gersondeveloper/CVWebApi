@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0TeMQeF2fteAcBqMvnubRfmCuqQ72tAQsq1EQjK99eblByZm6961xmfJbd+lstncnYpBiIB+T/+ruhd9TPHtBQ==",
+  "dgSpecHash": "dR6LyNlTE9VTX9tDlS5K62+ApanYojJEwYBHav/7kPywjdMiLaXzcr8HSTeSj4nuTS9Q9ULkYNIpQOjq/7+zAQ==",
   "success": true,
-  "projectFilePath": "/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/CVWebApi.DataAccess.csproj",
+  "projectFilePath": "/Users/gersonfilho/repos/dotnet/CVWebApi/CVWebApi.DataAccess/CvWebApi.DataAccess.csproj",
   "expectedPackageFiles": [
     "/Users/gersonfilho/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
     "/Users/gersonfilho/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

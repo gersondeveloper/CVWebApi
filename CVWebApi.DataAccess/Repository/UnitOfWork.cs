@@ -10,6 +10,10 @@ public class UnitOfWork : IUnitOfWork
     {
         _dbContext = dbContext;
         Experience = new ExperienceRepository(_dbContext);
+        Education = new EducationRepository(_dbContext);
+        PersonalData = new PersonalDataRepository(_dbContext);
+        Reference = new ReferenceRepository(_dbContext);
+        Skill = new SkillRepository(_dbContext);
     }
 
     public IEducationRepository Education { get; private set;}

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using CVWebApi.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
