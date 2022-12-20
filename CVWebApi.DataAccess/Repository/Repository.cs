@@ -15,17 +15,17 @@ public class Repository<T> : IRepository<T> where T : class
         _dbSet = _context.Set<T>();
     }
 
-    public void Add(T entity)
+    public async Task Add(T entity)
     {
-        _dbSet.Add(entity);
+        await _dbSet.AddAsync(entity);
     }
 
-    public T Get(Guid id)
+    public async Task<T> Get(Guid id)
     {
-        return _dbSet.Find(id);
-    }
+        return await _dbSet.FindAsync(id);
+    } 
 
-    public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
+    public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
     {
         IQueryable<T> query = _dbSet;
         if (filter != null)
@@ -39,10 +39,10 @@ public class Repository<T> : IRepository<T> where T : class
                 query = query.Include(includeProp);
             }
         }
-        return query.ToList();
+        return await query.ToListAsync();
     }
 
-    public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
+    public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
     {
         IQueryable<T> query = _dbSet;
 
@@ -59,7 +59,7 @@ public class Repository<T> : IRepository<T> where T : class
             }
         }
 
-        return query.FirstOrDefault();
+        return await query.FirstOrDefaultAsync();
     }
 
     public void Remove(int id)

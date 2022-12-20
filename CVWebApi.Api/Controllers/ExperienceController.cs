@@ -1,5 +1,6 @@
 using CVWebApi.DataAccess.Repository.IRepository;
 using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CVWebApi.Controllers;
@@ -7,7 +8,7 @@ namespace CVWebApi.Controllers;
 [Route("api/[controller]")]
 [Produces("application/json")]
 [ApiController]
-public class ExperienceController : Controller
+public class ExperienceController : ControllerBase
 {
     public readonly IUnitOfWork _unitOfWork;
     public readonly IValidator<Experience> _validator;
@@ -45,12 +46,14 @@ public class ExperienceController : Controller
         return new NotFoundResult();
     }
 
-    [HttpPost]
-    [ProducesResponseType(403)]
+    [HttpPost("create")]
+    [ProducesResponseType(400)]
     [ProducesResponseType(typeof(Experience), 201)]
-    public IActionResult Post([FromBody] Experience experience)
-    {       
-        if (ModelState.IsValid)
+    public async Task<IActionResult> Post([FromBody] Experience experience)
+    {
+        ValidationResult result = await _validator.ValidateAsync(experience);
+
+        if (result.IsValid)
         {
             _unitOfWork.Experience.Add(experience);
             _unitOfWork.Save();

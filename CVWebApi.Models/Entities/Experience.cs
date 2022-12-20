@@ -5,35 +5,34 @@ using FluentValidation;
 [Table("Experiences")]
 public class Experience
 {
-    [Key] public Guid Id { get; private set; }
-    [Required] public string CompanyName { get; private set; }
-    [Required] public string Role { get; private set; }
-    [Required] public DateTime StartDate { get; private set; }
-    public DateTime? FinishDate { get; private set; }
-    [Required] public string RoleDescription { get; private set; }
+    [Key]
+    public Guid Id { get; private set; }
+
     [Required]
-    public List<string> TechnologiesList { get; private set; }
+    public string CompanyName { get;  set; }
+
+    [Required]
+    public string Role { get;  set; }
+
+    [Required]
+    public DateTime StartDate { get;  set; }
+
+    public DateTime? FinishDate { get;  set; }
+
+    [Required]
+    public string RoleDescription { get;  set; }
+
+    [Required]
+    public List<string> TechnologiesList { get; set; }
 
     public Experience()
     {
 
     }
-    //create constructor
-    private Experience(string companyName, string role, DateTime startDate, string roleDescription, List<string> technologiesList)
+
+    public Experience(string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, List<string> technologiesList)
     {
         Id = Guid.NewGuid();
-        CompanyName = companyName;
-        Role = role;
-        StartDate = startDate;
-        FinishDate = null;
-        RoleDescription = roleDescription;
-        TechnologiesList = technologiesList;
-    }
-
-    //update constructor
-    private Experience(Guid id, string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, List<string> technologiesList)
-    {
-        Id = id;
         CompanyName = companyName;
         Role = role;
         StartDate = startDate;
@@ -41,17 +40,6 @@ public class Experience
         RoleDescription = roleDescription;
         TechnologiesList = technologiesList;
     }
-
-    public Experience AddExperience(string companyName, string role, DateTime startDate, string roleDescription, List<string> technologiesList)
-    {
-        return new Experience(companyName, role, startDate, roleDescription, technologiesList);
-    }
-
-    public Experience UpdateExperience(Guid id, string companyName, string role, DateTime startDate, DateTime? finishDate, string roleDescription, List<string> technologiesList)
-    {
-        return new Experience(id, companyName, role, startDate, finishDate, roleDescription, technologiesList);
-    }
-
 }
 
 public class ExperienceValidator : AbstractValidator<Experience>
