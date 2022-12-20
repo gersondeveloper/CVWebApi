@@ -20,8 +20,8 @@ public class ExperienceController : ControllerBase
         _validator = validator;
     }
 
-    [HttpGet()]
-    public IActionResult GetById([FromQuery] Guid id)
+    [HttpGet("{id}")]
+    public IActionResult GetById(Guid id)
     {
         if (id == Guid.Empty)
             return new BadRequestResult();
@@ -46,7 +46,7 @@ public class ExperienceController : ControllerBase
         return new NotFoundResult();
     }
 
-    [HttpPost("create")]
+    [HttpPost]
     [ProducesResponseType(400)]
     [ProducesResponseType(typeof(Experience), 201)]
     public async Task<IActionResult> Post([FromBody] Experience experience)
