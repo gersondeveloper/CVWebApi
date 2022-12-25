@@ -1,4 +1,5 @@
 using CVWebApi.DataAccess.Repository.IRepository;
+using CVWebApi.Models.Entities;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
@@ -21,22 +22,24 @@ public class ExperienceController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetById(Guid id)
+    [ProducesResponseType(typeof(Experience), 200)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> GetById(Guid id)
     {
         if (id == Guid.Empty)
             return new BadRequestResult();
 
 
-        var result = _unitOfWork.Experience.GetFirstOrDefault(x => x.Id == id);
+        var result = await _unitOfWork.Experience.GetFirstOrDefault(x => x.Id == id);
         return result != null ? new OkObjectResult(result) : new NotFoundResult();
     }
 
     [HttpGet("GetAll")]
     [ProducesResponseType(typeof(List<Experience>), 200)]
     [ProducesResponseType(404)]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        var result = _unitOfWork.Experience.GetAll();
+        var result = await _unitOfWork.Experience.GetAll();
 
         if(result != null)
         {
@@ -46,6 +49,7 @@ public class ExperienceController : ControllerBase
         return new NotFoundResult();
     }
 
+    
     [HttpPost]
     [ProducesResponseType(400)]
     [ProducesResponseType(typeof(Experience), 201)]
@@ -55,7 +59,7 @@ public class ExperienceController : ControllerBase
 
         if (result.IsValid)
         {
-            _unitOfWork.Experience.Add(experience);
+            await _unitOfWork.Experience.Add(experience);
             _unitOfWork.Save();
             
             return new CreatedResult("Created", experience);

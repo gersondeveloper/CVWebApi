@@ -15,15 +15,7 @@ public class ExperienceRepository : Repository<Experience>, IExperienceRepositor
 
     public void Update(Experience experience)
     {
-        Experience obj = new Experience();
+        _context.Update(experience);
 
-        obj = _context.Experiences.FirstOrDefault(x => x.Id == experience.Id);
-
-        //update
-        if (obj != null)
-        {
-            obj.UpdateExperience(experience.Id, experience.CompanyName, experience.Role, experience.StartDate, experience.FinishDate, experience.RoleDescription, experience.TechnologiesList);
-            _context.SaveChanges();
-        }
     }
 }

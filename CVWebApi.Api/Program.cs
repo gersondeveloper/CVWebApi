@@ -11,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IValidator<Experience>, ExperienceValidator>();
 builder.Services.AddScoped<IValidator<Reference>, ReferenceValidator>();
+builder.Services.AddScoped<IValidator<Education>, EducationValidator>();
+builder.Services.AddScoped<IValidator<PersonalData>, PersonalDataValidator>();
+builder.Services.AddScoped<IValidator<Skill>, SkillValidator>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

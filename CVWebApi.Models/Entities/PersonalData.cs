@@ -10,7 +10,7 @@ public class PersonalData
     [Key] public Guid Id { get; set; }
     [Required] public string Name { get; set; }
     [Required] public string Email { get; set; }
-    [Required] public List<PhoneNumber> PhoneNumberList {get ; set;}
+    [Required] public List<string> PhoneNumberList {get ; set;}
     public string? GithubUrl { get; set; }
     public string? LinkedinUrl { get; set; }
     public string? WebSite { get; set; }
