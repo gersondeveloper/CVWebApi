@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CVWebApi.DataAccess.Repository.IRepository;
+﻿using CVWebApi.DataAccess.Repository.IRepository;
 using CVWebApi.Models.Entities;
 using FluentValidation;
 using FluentValidation.Results;
@@ -26,29 +22,24 @@ namespace CVWebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             if (id == Guid.Empty)
                 return new BadRequestResult();
 
 
-            var result = _unitOfWork.Reference.GetFirstOrDefault(x => x.Id == id);
+            var result = await _unitOfWork.Reference.GetFirstOrDefault(x => x.Id == id);
             return result != null ? new OkObjectResult(result) : new NotFoundResult();
         }
 
         [HttpGet("GetAll")]
         [ProducesResponseType(typeof(List<Reference>), 200)]
         [ProducesResponseType(404)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var result = _unitOfWork.Reference.GetAll();
+            var result = await _unitOfWork.Reference.GetAll();
 
-            if (result != null)
-            {
-                return new OkObjectResult(result);
-            }
-
-            return new NotFoundResult();
+            return result != null ? new OkObjectResult(result) : new NotFoundResult();
         }
 
         [HttpPost]
@@ -60,7 +51,7 @@ namespace CVWebApi.Controllers
 
             if (result.IsValid)
             {
-                _unitOfWork.Reference.Add(reference);
+                await _unitOfWork.Reference.Add(reference);
                 _unitOfWork.Save();
 
                 return new CreatedResult("Created", reference);

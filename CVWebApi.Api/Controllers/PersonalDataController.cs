@@ -1,4 +1,5 @@
 using CVWebApi.DataAccess.Repository.IRepository;
+using CVWebApi.Models.Entities;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
@@ -8,13 +9,13 @@ namespace CVWebApi.Controllers;
 [Route("api/[controller]")]
 [Produces("application/json")]
 [ApiController]
-public class ExperienceController : ControllerBase
+public class PersonalDataController : ControllerBase
 {
     public readonly IUnitOfWork _unitOfWork;
-    public readonly IValidator<Experience> _validator;
+    public readonly IValidator<PersonalData> _validator;
 
 
-    public ExperienceController(IUnitOfWork unitOfWork, IValidator<Experience> validator)
+    public PersonalDataController(IUnitOfWork unitOfWork, IValidator<PersonalData> validator)
     {
         _unitOfWork = unitOfWork;
         _validator = validator;
@@ -34,11 +35,11 @@ public class ExperienceController : ControllerBase
     }
 
     [HttpGet("GetAll")]
-    [ProducesResponseType(typeof(List<Experience>), 200)]
+    [ProducesResponseType(typeof(PersonalData), 200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetAll()
     {
-        var result = await _unitOfWork.Experience.GetAll();
+        var result = await _unitOfWork.PersonalData.GetAll();
 
         if(result != null)
         {
@@ -48,22 +49,21 @@ public class ExperienceController : ControllerBase
         return new NotFoundResult();
     }
 
-    
+
     [HttpPost]
     [ProducesResponseType(400)]
-    [ProducesResponseType(typeof(Experience), 201)]
-    public async Task<IActionResult> Post([FromBody] Experience experience)
+    [ProducesResponseType(typeof(PersonalData), 201)]
+    public async Task<IActionResult> Post([FromBody] PersonalData personalData)
     {
-        ValidationResult result = await _validator.ValidateAsync(experience);
+        ValidationResult result = await _validator.ValidateAsync(personalData);
 
         if (result.IsValid)
         {
-            await _unitOfWork.Experience.Add(experience);
+            await _unitOfWork.PersonalData.Add(personalData);
             _unitOfWork.Save();
-            
-            return new CreatedResult("Created", experience);
+
+            return new CreatedResult("Created", personalData);
         }
         return new BadRequestResult();
     }
-
 }
